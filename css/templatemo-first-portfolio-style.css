@@ -13,7 +13,8 @@ https://templatemo.com/tm-578-first-portfolio
 :root {
   --white-color:                  #ffffff;
   --primary-color:                #535da1;
-  --secondary-color:              #14B789;
+  /* --secondary-color:              #14B789; */
+  --secondary-color:              #1b98d2ff;
   --section-bg-color:             #f9f9f9;
   --dark-color:                   #000000;
   --p-color:                      #717275;
@@ -28,7 +29,7 @@ https://templatemo.com/tm-578-first-portfolio
   --h4-font-size:                 32px;
   --h5-font-size:                 24px;
   --h6-font-size:                 22px;
-  --p-font-size:                  18px;
+  --p-font-size:                  16px;
   --menu-font-size:               12px;
   --copyright-font-size:          14px;
 
@@ -978,6 +979,17 @@ strong {
   color: var(--white-color);
 }
 
+/*---------------------------------------
+  LINEs               
+-----------------------------------------*/
+ .line {
+  /* width: 112px;
+  height: 47px; */
+  margin-top: 50px;
+  margin-bottom: 50px;
+  border-bottom: 1px solid var(--primary-color);
+  /* position: absolute; */
+}
 
 /*---------------------------------------
   RESPONSIVE STYLES               
