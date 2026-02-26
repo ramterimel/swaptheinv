@@ -59,27 +59,27 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ms-lg-5">
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_1">Home</a>
+                            <a class="nav-link" href="#section_1">Home</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_2">About</a>
+                            <a class="nav-link" href="#section_2">About</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_3">Services</a>
+                            <a class="nav-link" href="#section_3">Services</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_6">Testimonials</a>
+                            <a class="nav-link" href="#section_6">Testimonials</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_4">Trades</a>
+                            <a class="nav-link" href="#section_4">Trades</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link click-scroll" href="#section_5">Contact</a>
+                            <a class="nav-link" href="#section_5">Contact</a>
                         </li>
                     </ul>
 
@@ -1105,9 +1105,9 @@
                                 <h4 class="mb-0">Vinayak Vanarse</h4>
                                 <!-- <p>Geeks UI Customer </p> -->
                                 <!-- image  -->
-                                <!-- <div class="mb-4">
-                                    <img src="../images/testimonials/abhi-shar.png" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin: 20px 0px 20px 0px">
-                                </div> -->
+                                <div class="mb-4">
+                                    <img src="../images/testimonials/vin-van.png" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin: 20px 0px 20px 0px">
+                                </div>
                             </div>
                         </div>
 
@@ -1121,9 +1121,9 @@
                                 <h4 class="mb-0">Kavita Swapnil Khairnar </h4>
                                 <!-- <p>Geeks UI Customer </p> -->
                                 <!-- image  -->
-                                <!-- <div class="mb-5">
-                                    <img src="../images/testimonials/dip-pat.png" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin: 20px 0px 20px 0px">
-                                </div> -->
+                                <div class="mb-5">
+                                    <img src="../images/testimonials/kav-swa.png" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin: 20px 0px 20px 0px">
+                                </div>
                             </div>
                         </div>
 
@@ -1143,9 +1143,9 @@
                                 <h4 class="mb-0">Vishal</h4>
                                 <!-- <p>Geeks UI Customer </p> -->
                                 <!-- image  -->
-                                <!-- <div class="mb-4">
-                                    <img src="../images/testimonials/abhi-shar.png" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin: 20px 0px 20px 0px">
-                                </div> -->
+                                <div class="mb-4">
+                                    <img src="../images/testimonials/vishal.png" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin: 20px 0px 20px 0px">
+                                </div>
                             </div>
                         </div>
 
@@ -1159,9 +1159,9 @@
                                 <h4 class="mb-0">Anand Wangikar</h4>
                                 <!-- <p>Geeks UI Customer </p> -->
                                 <!-- image  -->
-                                <!-- <div class="mb-5">
-                                    <img src="../images/testimonials/dip-pat.png" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin: 20px 0px 20px 0px">
-                                </div> -->
+                                <div class="mb-5">
+                                    <img src="../images/testimonials/ana-wan.png" alt="" style="width: 100px; height: 100px; border-radius: 50%; margin: 20px 0px 20px 0px">
+                                </div>
                             </div>
                         </div>
 
@@ -1384,11 +1384,67 @@ Swapnil is not just a mentor but a beacon of hope for those seeking to rebuild t
             </div>
         </footer>
 
+        <!-- New script for smooth scrolling and active state -->
+        <script>
+            // Smooth scrolling for nav links
+            document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    // Get the target section
+                    const targetId = this.getAttribute('href');
+                    const targetSection = document.querySelector(targetId);
+                    
+                    if (targetSection) {
+                        // Scroll smoothly to the section
+                        targetSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                        
+                        // Update active state
+                        document.querySelectorAll('.navbar-nav .nav-link').forEach(navLink => {
+                            navLink.classList.remove('active');
+                        });
+                        this.classList.add('active');
+                    }
+                });
+            });
+
+            // Update active state on scroll
+            window.addEventListener('scroll', function() {
+                const sections = document.querySelectorAll('section[id^="section_"]');
+                const scrollPosition = window.scrollY + 100; // Offset for navbar
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionBottom = sectionTop + section.offsetHeight;
+                    const sectionId = section.getAttribute('id');
+                    
+                    if (scrollPosition >= sectionTop && scrollPosition < sectionBottom) {
+                        // Remove active class from all nav links
+                        document.querySelectorAll('.navbar-nav .nav-link').forEach(link => {
+                            link.classList.remove('active');
+                        });
+                        
+                        // Add active class to corresponding nav link
+                        const activeLink = document.querySelector(`.navbar-nav .nav-link[href="#${sectionId}"]`);
+                        if (activeLink) {
+                            activeLink.classList.add('active');
+                        }
+                    }
+                });
+            });
+
+            // Trigger scroll event on page load to set initial active state
+            window.dispatchEvent(new Event('scroll'));
+        </script>
+
         <!-- JAVASCRIPT FILES -->
         <script src="js/jquery.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
         <script src="js/jquery.sticky.js"></script>
-        <script src="js/click-scroll.js"></script>
+        <!-- <script src="js/click-scroll.js"></script> -->
         <script src="js/jquery.magnific-popup.min.js"></script>
         <script src="js/magnific-popup-options.js"></script>
         <script src="js/custom.js"></script>
